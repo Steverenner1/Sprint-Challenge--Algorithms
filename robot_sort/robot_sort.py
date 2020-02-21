@@ -92,12 +92,53 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+    # You may use any pre-defined robot methods.
+    # You may NOT modify any pre-defined robot methods.
+    # You may use logical operators. (if, and, or, not, etc.)
+    # You may use comparison operators. (>, >=, <, <=, ==, is, etc.)
+    # You may use iterators. (while, for, break, continue)
+    # You may NOT store any variables. (=)
+    # You may NOT access any instance variables directly. (self._anything)
+    # You may NOT use any Python libraries or class methods. (sorted(), etc.)
+    # You may define robot helper methods, as long as they follow all the rules.
+    
+    
     def sort(self):
         """
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        # Bubble sort
+        self.set_light_on()
+
+        while self.light_is_on():
+            # Resetting the light
+            self.set_light_off()
+
+            while self.can_move_right():
+                # Picking up an item
+                self.swap_item()
+                self.move_right()
+                # Comparing to the following item
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.set_light_on()
+                self.move_left()
+                self.swap_item()
+                # Next move
+                self.move_right()
+            
+            # From the right
+            while self.can_move_left():
+                self.swap_item()
+                self.move_left()
+                # Item from the left
+                if self.compare_item() == -1:
+                    self.swap_item()
+                    self.set_light_on()
+                self.move_right()
+                self.swap_item()
+                self.move_left()
 
 
 if __name__ == "__main__":
